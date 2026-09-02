@@ -1,52 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Producto</title>
+
+    <title>Productos</title>
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="Boostrap/bootstrap/bootstrap/css/bootstrap.min.css">
 </head>
 
 <body>
 
-    <div class="row">
-        <div class="col-md-3">
-            <input type="nombre" id="nombre" placeholder="Nombre">
+    <div class="container mt-5">
+
+
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">Gestión de Productos</h2>
+            <p class="text-muted">Listado de productos registrados</p>
         </div>
 
-        <div class="col-md-3">
-            <input type="nombre" id="descripcion" placeholder="Descripcion">
+
+        <div class="card shadow-sm mb-4">
+
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Datos del producto</h5>
+            </div>
+
+            <div class="card-body">
+
+                <div class="row g-3">
+
+                    <div class="col-md-6 col-lg-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+                    </div>
+
+                    <div class="col-md-6 col-lg-3">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <input type="text" class="form-control" id="descripcion" placeholder="Descripción">
+                    </div>
+
+                    <div class="col-md-6 col-lg-3">
+                        <label for="precioCosto" class="form-label">Precio costo</label>
+                        <input type="number" class="form-control" id="precioCosto" placeholder="Precio costo"
+                            step="0.01">
+                    </div>
+
+                    <div class="col-md-6 col-lg-3">
+                        <label for="precioVenta" class="form-label">Precio venta</label>
+                        <input type="number" class="form-control" id="precioVenta" placeholder="Precio venta"
+                            step="0.01">
+                    </div>
+
+                </div>
+
+                <div class="mt-4 text-end">
+                    <button type="button" class="btn btn-primary" onclick="AgregarProducto()">
+                        <i class="bi bi-plus-circle"></i>
+                        Agregar producto
+                    </button>
+                </div>
+
+            </div>
         </div>
 
-        <div class="col-md-3">
-            <input type="nombre" id="precioCosto" placeholder="Precio Costo">
-        </div>
+        <!-- Tabla -->
+        <div class="card shadow-sm">
 
-        <div class="col-md-3">
-            <input type="nombre" id="precioVenta" placeholder="Precio venta ">
+            <div class="card-header">
+                <h5 class="mb-0">Listado de productos</h5>
+            </div>
+
+            <div class="card-body">
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover align-middle">
+
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Precio Costo</th>
+                                <th>Precio Venta</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tablaProducto">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
         </div>
 
     </div>
 
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Descripcion</th>
-                <th scope="col">Precio Costo</th>
-                <th scope="col">Precio Venta</th>
-            </tr>
-        </thead>
-        <tbody id="tablaProducto" class="table-group-divider">
-        
-        </tbody>
-    </table>
-
     <script src="Boostrap/bootstrap/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery.js"></script>
     <script src="js/Producto.1.0.0.js"></script>
+
 </body>
 
 </html>
