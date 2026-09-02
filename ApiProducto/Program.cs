@@ -4,6 +4,24 @@ using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+
+{
+
+    options.AddPolicy("AllowAll", policy =>
+
+    {
+
+        policy.AllowAnyOrigin()
+
+              .AllowAnyMethod()
+
+              .AllowAnyHeader();
+
+    });
+
+});
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")
@@ -27,7 +45,8 @@ var app = builder.Build();
 
 
 
-    app.UseSwagger();
+
+app.UseSwagger();
     app.UseSwaggerUI();
 
 
@@ -44,5 +63,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseCors("AllowAll");
 
 app.Run();
