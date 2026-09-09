@@ -78,6 +78,7 @@ namespace ApiProducto.Controllers
         [HttpPost]
         public async Task<ActionResult<Producto>> PostProducto(Producto producto)
         {
+       
             _context.Productos.Add(producto);
             await _context.SaveChangesAsync();
 

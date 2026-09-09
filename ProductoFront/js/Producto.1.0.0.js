@@ -84,7 +84,7 @@ function BuscarValoreProducto(id) {
       document.getElementById("precioCostoEditar").value = data.precioCosto;
       document.getElementById("precioVentaEditar").value = data.precioVenta;
 
-      let modal = new bootstrap.Modal(document.getElementById("modalProducto"));
+      let modal = new bootstrap.Modal(document.getElementById("modalEditar"));
 
       modal.show();
     })
@@ -93,6 +93,44 @@ function BuscarValoreProducto(id) {
     });
 }
 
+
+function EditarProducto() {
+  let id = document.getElementById("idEditar").value;
+  console.log("id", id);
+
+  let editarProducto = {
+    productoID: parseInt(id),
+    nombre: document.getElementById("nombreEditar").value,
+    descripcion: document.getElementById("descripcionEditar").value,
+    precioVenta: document.getElementById("precioVentaEditar").value,
+    precioCosto: document.getElementById("precioCostoEditar").value,
+  };
+
+fetch(`http://localhost:5050/api/Producto/${id}`, {
+  method: "PUT",
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(editarProducto),
+})
+  .then(() => {
+
+
+    document.getElementById("idEditar").value = 0;
+    document.getElementById("nombreEditar").value = "";
+    document.getElementById("precioCostoEditar").value = "",
+      document.getElementById("precioVentaEditar").value = ""
+
+    let modal = bootstrap.Modal.getOrCreateInstance(
+      document.getElementById("modalEditar"),
+    );
+
+    modal.hide();
+    ObtenerProductos();
+  })
+  .catch((error) => console.error("No se pudo editar la categoría.", error));
+}
 
 
 
